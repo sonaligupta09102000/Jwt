@@ -1,0 +1,21 @@
+package com.onerivet.service;
+
+import java.util.List;
+
+import com.onerivet.model.payload.UsersDto;
+
+public interface UsersService {
+	
+	public String addAllUsers(UsersDto usersDto);
+	
+	public List<UsersDto> getAllusers();
+	
+	public UsersDto getUsersById(int id);
+	
+	public String updateUsersById(UsersDto usersDto, int id);
+	
+	public UsersDto deleteById(int id,UsersDto usersDto);
+	
+	public String deleteAll();
+
+}

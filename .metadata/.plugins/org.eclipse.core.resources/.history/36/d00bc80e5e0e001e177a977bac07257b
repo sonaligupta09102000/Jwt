@@ -1,0 +1,11 @@
+package com.onerivet.model.entity;
+
+public class Users {
+	
+	private int id;
+	private String name;
+	private String emailId;
+	private String address;
+	
+
+}

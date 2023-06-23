@@ -1,0 +1,102 @@
+package com.onerivet.service.impl;
+
+import java.util.List;
+import java.util.stream.Collectors;
+
+import org.modelmapper.ModelMapper;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.onerivet.model.entity.Users;
+import com.onerivet.model.payload.UsersDto;
+import com.onerivet.repositry.UsersRepository;
+import com.onerivet.service.UsersService;
+
+@Service
+public class UsersImplementation implements UsersService {
+
+	@Autowired
+	private UsersRepository usersRepository;
+
+	@Autowired
+	private ModelMapper modelMapper;
+
+//	public Users usersdtoTousers(UsersDto usersDto)
+//	{
+//		return this.modelMapper.map(usersDto, Users.class);
+//		
+//	}
+//	
+//	public UsersDto userstousersdto(Users users)
+//	{
+//		return this.modelMapper.map(users, UsersDto.class);
+//	}
+
+	@Override
+	public String addAllUsers(UsersDto usersDto) {
+		// TODO Auto-generated method stub
+
+		// usersRepository.save(usersdtoTousers(usersDto));
+
+		Users saveUsersRequest = this.modelMapper.map(usersDto, Users.class);
+		Users saveUsersResponse = usersRepository.save(saveUsersRequest);
+		this.modelMapper.map(saveUsersResponse, UsersDto.class);
+		return "Users Saved SuccessFully";
+	}
+
+	@Override
+	public List<UsersDto> getAllusers() {
+		// TODO Auto-generated method stub
+
+		return usersRepository.findAll().stream().map(users -> this.modelMapper.map(users, UsersDto.class))
+				.collect(Collectors.toList());
+//		List<Users> findAllUsers = usersRepository.findAll();
+//	    this.modelMapper.map(findAllUsers, UsersDto.class);
+		// usersRepository.findAll().stream().map((x)->this.modelMapper.map(x, null)
+
+	}
+
+	@Override
+	public UsersDto getUsersById(int id) {
+		// TODO Auto-generated method stub
+		//Users getbyidUsersRequest = this.modelMapper.map(id, Users.class);
+		Users getByIdUsersResponse = usersRepository.findById(id).get();
+		return this.modelMapper.map(getByIdUsersResponse, UsersDto.class);
+
+		//return collect.get(id);
+
+	}
+
+	@Override
+	public String updateUsersById(UsersDto usersDto, int id) {
+		// TODO Auto-generated method stub
+		Users users1 = usersRepository.findById(usersDto.getId()).get();
+		
+		
+		
+		
+Users users1 = new Users();
+//		if (users==users1) {
+			users.setId(users1.getId());
+			users.setName(users1.getName());
+			users.setAddress(users1.getAddress());
+			users.setEmailId(users1.getEmailId());
+		
+//		
+//		Users updateAll = usersRepository.save(users1);
+//		 this.modelMapper.map(updateAll, UsersDto.class);
+
+		Users saveUpdatedUsersRequest = this.modelMapper.map(usersDto, Users.class);
+		Users saveUpdatedUsersResponse = usersRepository.save(saveUpdatedUsersRequest);
+		this.modelMapper.map(saveUpdatedUsersResponse, UsersDto.class);
+ 	return "Users Updated Successfully";
+	}
+
+	@Override
+	public String deleteAll() {
+		// TODO Auto-generated method stub
+		usersRepository.deleteAll();
+		return "Users Deleted Successfully";
+	}
+
+}

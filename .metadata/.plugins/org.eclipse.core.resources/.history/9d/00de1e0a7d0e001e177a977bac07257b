@@ -1,0 +1,5 @@
+package com.onerivet.config;
+
+public class SecurityUsers {
+
+}

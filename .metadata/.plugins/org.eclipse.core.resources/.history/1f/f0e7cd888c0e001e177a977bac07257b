@@ -1,0 +1,30 @@
+package com.onerivet.config;
+
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+import org.springframework.context.annotation.Bean;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.web.SecurityFilterChain;
+
+//@EnableAutoConfiguration
+
+public class Security {
+	
+	@Bean
+	public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception
+	{
+		return httpSecurity
+				.csrf()
+				.disable()
+				.authorizeHttpRequests()
+				.requestMatchers("/")
+				.permitAll()
+				.and().build();
+				//.authe;
+		
+		
+	}
+	
+	
+	
+
+}

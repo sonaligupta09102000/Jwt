@@ -1,0 +1,12 @@
+package com.onerivet.service;
+
+import org.springframework.beans.factory.annotation.Autowired;
+
+import com.onerivet.repositry.UsersRepository;
+
+public interface UsersService {
+	
+	@Autowired
+	private UsersRepository usersRepository;
+
+}

@@ -1,0 +1,50 @@
+package com.onerivet.service;
+
+import java.security.Key;
+import java.sql.Date;
+import java.util.HashMap;
+import java.util.Map;
+
+import javax.crypto.SecretKey;
+
+import org.springframework.stereotype.Component;
+
+import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.SignatureAlgorithm;
+import io.jsonwebtoken.io.Decoders;
+import io.jsonwebtoken.security.Keys;
+
+@Component
+public class JwtService {
+	
+	//SecretKey key=Keys.secretKeyFor(SignatureAlgorithm.HS512);
+	
+	public static final String SECRET= "qKlPILBxMEFCE4b7T9iVTXAzkfz5vcBuRp7_l-E6jGoByTu0AeO2EHeqFvjky-kPMhYVKVpV9mcMBtTUYGZ_Mw";
+	public String generatedTokens(String userName)
+	{
+		Map<String, Object> clamis=new HashMap<>();
+		return createToken(clamis ,userName);
+		
+	}
+	
+	private  String createToken(Map<String, Object> claims, String userName)
+	{
+		return Jwts.builder()
+				.setClaims(claims)
+				.setSubject(userName)
+				.setIssuedAt(new Date(System.currentTimeMillis()))
+				.setExpiration(new Date(System.currentTimeMillis()+1000*60*30))
+				//.signWith(SignatureAlgorithm.HS512,key)
+				.signWith(getSignKey(),SignatureAlgorithm.HS256)
+				.compact()
+				;
+		
+	}
+
+	private Key getSignKey() {
+		// TODO Auto-generated method stub
+		byte[] key=Decoders.BASE64.decode(SECRET);
+		return Keys.hmacShaKeyFor(key);
+	}
+
+}

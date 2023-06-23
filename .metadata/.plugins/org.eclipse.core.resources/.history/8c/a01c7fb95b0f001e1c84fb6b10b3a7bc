@@ -1,0 +1,13 @@
+spring:
+  jpa:
+    #database: usersJwt
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+  datasource:
+    url: jdbc:sqlserver://localhost:1433;databaseName=UsersJwt;encrypt=false
+    username: sa
+    password: Admin#123
+    
+    
+    

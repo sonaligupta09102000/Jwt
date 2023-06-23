@@ -1,0 +1,37 @@
+package com.onerivet.service;
+
+import java.sql.Date;
+import java.util.HashMap;
+import java.util.Map;
+
+import javax.crypto.SecretKey;
+
+import org.springframework.stereotype.Component;
+
+import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.SignatureAlgorithm;
+import io.jsonwebtoken.security.Keys;
+
+@Component
+public class JwtService {
+	
+	SecretKey key=Keys.secretKeyFor(SignatureAlgorithm.HS512);
+	
+	public String generatedTokens(String userName)
+	{
+		Map<String, Object> clamis=new HashMap<>();
+		return createToken(clamis,userName);
+		
+	}
+	
+	private  String createToken(Map<String, Object> claims, String userName)
+	{
+		return Jwts.builder()
+				.setClaims(claims)
+				.setSubject(userName)
+				.setIssuedAt(new Date(System.))
+				;
+		
+	}
+
+}

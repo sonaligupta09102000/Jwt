@@ -1,0 +1,42 @@
+package com.onerivet.service.impl;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
+
+import com.onerivet.config.SecurityUser;
+import com.onerivet.model.entity.Users;
+import com.onerivet.repositry.UsersRepository;
+
+@Component
+@Service
+public class UsersServiceDetails implements UserDetailsService {
+	
+	@Autowired
+	private UsersRepository usersRepository;
+
+	@Override
+	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+		// TODO Auto-generated method stub
+		//try {
+		 //Users users ;
+		
+		Users users = usersRepository.findByUserName(username).get();
+				
+				
+		
+		
+//		}catch(Exception e)
+//		{
+//			throw new RuntimeException();
+//		}
+		
+		return  new SecurityUser(users);
+		
+		
+	}
+
+}

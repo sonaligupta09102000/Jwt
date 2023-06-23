@@ -1,0 +1,13 @@
+package com.onerivet.service;
+
+import org.springframework.stereotype.Component;
+
+@Component
+public class JwtService {
+	
+	public String generatedTokens(String userName)
+	{
+		Map<String, >
+	}
+
+}

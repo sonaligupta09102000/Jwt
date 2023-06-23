@@ -1,0 +1,11 @@
+spring:
+  jpa:
+    database: usersJwt
+    show-sql: true
+    hibernate:
+      ddl-auto: create
+  datasource:
+    url: jdbc:sqlserver://localhost:1433/mydb
+    username: sa
+    password: Admin#123
+    #driverClassName: org.postgresql.Driver

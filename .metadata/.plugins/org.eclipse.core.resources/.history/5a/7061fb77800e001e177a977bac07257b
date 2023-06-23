@@ -1,0 +1,9 @@
+package com.onerivet.model.response;
+
+public class GenericResponse<T> {
+	 
+	private T data;
+	private String message;
+
+	 
+}

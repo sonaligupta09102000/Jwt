@@ -1,0 +1,20 @@
+package com.onerivet.service;
+
+import javax.crypto.SecretKey;
+
+import org.springframework.stereotype.Component;
+
+import io.jsonwebtoken.SignatureAlgorithm;
+import io.jsonwebtoken.security.Keys;
+
+@Component
+public class JwtService {
+	
+	SecretKey key=Keys.secretKeyFor(SignatureAlgorithm.HS512);
+	
+	public String generatedTokens(String userName)
+	{
+		Map<String, Object>
+	}
+
+}

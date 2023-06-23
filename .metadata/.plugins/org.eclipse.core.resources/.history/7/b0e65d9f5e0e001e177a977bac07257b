@@ -1,0 +1,5 @@
+package com.onerivet.repositry;
+
+public interface UsersRepositry {
+
+}
